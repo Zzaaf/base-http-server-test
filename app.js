@@ -1,19 +1,25 @@
 const express = require('express');
 
+// инициализация приложения 'app'
 const app = express();
-const todos = [];
+// условное формирование порта
+const PORT = process.env.PORT ?? 3000;
+// псевдо данные, имитация БД
+const mockData = [];
 
+// обработчики HTTP запросов
 app.get('/', (req, res) => {
-  res.status(200).json('HTTP server is working!');
+  res.status(200).send('HTTP server is working!');
 });
 
 app.get('/users', (req, res) => {
-  res.status(200).json(
-    {
-      data: todos,
-      error: null,
-    },
-  );
+  res.status(200).json({
+    data: mockData,
+    error: null,
+  });
 });
 
-app.listen(3000, () => console.log('Listening at port 3000'));
+// прослушивание порта приложения
+app.listen(PORT, () => {
+  console.log(`Listening at ${PORT} port`);
+});
